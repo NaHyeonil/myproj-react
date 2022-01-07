@@ -1,7 +1,10 @@
 import Axios from 'axios';
-import { useEffect } from 'react';
+import DebugStates from 'components/DebugStates';
+import { useEffect, useState } from 'react';
 
-function ReviewList() {
+function PageReviewList() {
+  const [reviewList, setReviewList] = useState([]);
+
   useEffect(() => {
     refetch();
   }, []);
@@ -9,10 +12,11 @@ function ReviewList() {
   const refetch = () => {
     const url = 'http://localhost:8000/shop/api/reviews/';
     Axios.get(url)
-      .then((response) => {
+      .then(({ data }) => {
         console.group('정상 응답');
-        console.log(response);
+        console.log(data);
         console.groupEnd();
+        setReviewList(data);
       })
       .catch((error) => {
         console.group('에러 응답');
@@ -24,8 +28,10 @@ function ReviewList() {
   return (
     <div>
       <h2>Review List</h2>
+      <hr />
+      <DebugStates reviewList={reviewList} />
     </div>
   );
 }
 
-export default ReviewList;
+export default PageReviewList;
