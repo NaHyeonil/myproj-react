@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import DebugStates from 'components/DebugStates';
+import Review from 'components/Review';
 import { useEffect, useState } from 'react';
 
 function PageReviewList() {
@@ -18,15 +19,10 @@ function PageReviewList() {
     const url = 'http://localhost:8000/shop/api/reviews/';
     Axios.get(url)
       .then(({ data }) => {
-        console.group('정상 응답');
-        console.log(data);
-        console.groupEnd();
         setReviewList(data);
       })
       .catch((error) => {
-        console.group('에러 응답');
-        console.log(error);
-        console.groupEnd();
+        console.error(error);
         setError(error);
       })
       .finally(() => {
@@ -47,6 +43,13 @@ function PageReviewList() {
       >
         새로고침
       </button>
+
+      <div>
+        {reviewList.map((review) => (
+          <Review key={review.id} review={review} />
+        ))}
+      </div>
+
       <hr />
       <DebugStates loading={loading} error={error} reviewList={reviewList} />
     </div>
