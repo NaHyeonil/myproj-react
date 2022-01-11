@@ -8,8 +8,9 @@ import ReviewForm from 'pages/reviews/ReviewForm';
 import ReviewList from 'pages/reviews/ReviewList';
 import useWindowWidth from 'pages/examples/useWindowWidth';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
+import CssModule from 'pages/examples/CssModule';
 import './App.css';
+import CssInJs from 'pages/examples/CssInJs';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -26,6 +27,8 @@ function App() {
           <Route path="/reviews/new/" element={<ReviewForm />} />
           <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} />
           <Route path="/examples/components/" element={<Components />} />
+          <Route path="/examples/css-module/" element={<CssModule />} />
+          <Route path="/examples/css-in-js/" element={<CssInJs />} />
         </Routes>
       </div>
       <Routes>
