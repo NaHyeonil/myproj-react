@@ -19,6 +19,8 @@ function PageReviewForm() {
       content: '',
     });
 
+  const [errorMessages, setErrorMessages] = useState({});
+
   useEffect(() => {
     const fetchReview = async () => {
       setLoading(true);
@@ -41,6 +43,7 @@ function PageReviewForm() {
   const saveReview = async () => {
     setLoading(true);
     setError(null);
+    setErrorMessages({});
 
     const url = !reviewId
       ? `${API_HOST}/shop/api/reviews/`
@@ -56,6 +59,8 @@ function PageReviewForm() {
     } catch (e) {
       setError(e);
       console.error(e);
+
+      setErrorMessages(e.response.data);
     }
 
     setLoading(false);
@@ -73,8 +78,13 @@ function PageReviewForm() {
         handleFieldChange={handleFieldChange}
         handleSubmit={saveReview}
         loading={loading}
+        errorMessages={errorMessages}
       />
-      <DebugStates reviewId={reviewId} fieldValues={fieldValues} />
+      <DebugStates
+        reviewId={reviewId}
+        fieldValues={fieldValues}
+        errorMessages={errorMessages}
+      />
     </div>
   );
 }
