@@ -1,3 +1,4 @@
+import './App.css';
 import TopNav from 'components/TopNav';
 import Login from 'pages/accounts/Login';
 import Profile from 'pages/accounts/Profile';
@@ -9,10 +10,12 @@ import ReviewList from 'pages/reviews/ReviewList';
 import useWindowWidth from 'pages/examples/useWindowWidth';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import CssModule from 'pages/examples/CssModule';
-import './App.css';
 import CssInJs from 'pages/examples/CssInJs';
 import ContextApiSample from 'pages/examples/ContextApiSample';
 import ContextApiSample2 from 'pages/examples/ContextApiSample2';
+import PageNewsIndex from 'pages/news/PageNewsIndex';
+import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
+import PageNewsArticleFrom from 'pages/news/PageNewsArticleFrom';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -25,6 +28,13 @@ function App() {
           <Route path="/accounts/login/" element={<Login />} />
           <Route path="/accounts/profile/" element={<Profile />} />
           <Route path="/blog/" element={<PageBlog />} />
+          <Route path="/news/" element={<PageNewsIndex />} />
+          <Route path="/news/new/" element={<PageNewsArticleFrom />} />
+          <Route
+            path="/news/:articleId/edit/"
+            element={<PageNewsArticleFrom />}
+          />
+          <Route path="/news/:articleId/" element={<PageNewsArticleDetail />} />
           <Route path="/reviews/" element={<ReviewList />} />
           <Route path="/reviews/new/" element={<ReviewForm />} />
           <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} />

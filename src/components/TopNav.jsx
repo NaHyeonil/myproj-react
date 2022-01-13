@@ -17,6 +17,9 @@ function TopNav() {
           <MyLink to="/blog/">블로그</MyLink>
         </li>
         <li>
+          <MyLink to="/news/">뉴스</MyLink>
+        </li>
+        <li>
           <MyLink to="/examples/components/">컴포넌트 예시</MyLink>
         </li>
         <li>
