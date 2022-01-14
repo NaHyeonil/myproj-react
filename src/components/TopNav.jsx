@@ -10,16 +10,16 @@ function TopNav() {
         <li>
           <MyLink to="/accounts/profile/">프로필</MyLink>
         </li>
-        <li>
+        {/* <li>
           <MyLink to="/reviews/">리뷰</MyLink>
         </li>
         <li>
           <MyLink to="/blog/">블로그</MyLink>
-        </li>
+        </li> */}
         <li>
           <MyLink to="/news/">뉴스</MyLink>
         </li>
-        <li>
+        {/* <li>
           <MyLink to="/examples/components/">컴포넌트 예시</MyLink>
         </li>
         <li>
@@ -36,6 +36,9 @@ function TopNav() {
         </li>
         <li>
           <MyLink to="/examples/context-api-2/">ContextApi #2</MyLink>
+        </li> */}
+        <li>
+          <MyLink to="/hotdeal/">핫딜</MyLink>
         </li>
       </ul>
     </div>

@@ -16,6 +16,9 @@ import ContextApiSample2 from 'pages/examples/ContextApiSample2';
 import PageNewsIndex from 'pages/news/PageNewsIndex';
 import PageNewsArticleDetail from 'pages/news/PageNewsArticleDetail';
 import PageNewsArticleFrom from 'pages/news/PageNewsArticleFrom';
+import PageHotdealIndex from 'pages/hotdeal/PageHotdealIndex';
+import PageHotdealDetail from 'pages/hotdeal/PageHotdealDetail';
+import PageHotdealFrom from 'pages/hotdeal/PageHotdealFrom';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -27,7 +30,7 @@ function App() {
           <Route path="/" element={<Navigate to="/blog/" />} />
           <Route path="/accounts/login/" element={<Login />} />
           <Route path="/accounts/profile/" element={<Profile />} />
-          <Route path="/blog/" element={<PageBlog />} />
+          {/* <Route path="/blog/" element={<PageBlog />} /> */}
           <Route path="/news/" element={<PageNewsIndex />} />
           <Route path="/news/new/" element={<PageNewsArticleFrom />} />
           <Route
@@ -35,7 +38,7 @@ function App() {
             element={<PageNewsArticleFrom />}
           />
           <Route path="/news/:articleId/" element={<PageNewsArticleDetail />} />
-          <Route path="/reviews/" element={<ReviewList />} />
+          {/* <Route path="/reviews/" element={<ReviewList />} />
           <Route path="/reviews/new/" element={<ReviewForm />} />
           <Route path="/reviews/:reviewId/edit/" element={<ReviewForm />} />
           <Route path="/examples/components/" element={<Components />} />
@@ -45,7 +48,15 @@ function App() {
           <Route
             path="/examples/context-api-2/"
             element={<ContextApiSample2 />}
+          /> */}
+          <Route path="/hotdeal/" element={<PageHotdealIndex />} />
+          <Route path="/hotdeal/:hotdealId/" element={<PageHotdealDetail />} />
+          <Route path="/hotdeal/new/" element={<PageHotdealFrom />} />
+          <Route
+            path="/hotdeal/:hotdealId/edit/"
+            element={<PageHotdealFrom />}
           />
+          <Route path="/hotdeal/:hotdealId/" element={<PageHotdealDetail />} />
         </Routes>
       </div>
       <Routes>
