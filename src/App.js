@@ -19,6 +19,7 @@ import PageNewsArticleFrom from 'pages/news/PageNewsArticleFrom';
 import PageHotdealIndex from 'pages/hotdeal/PageHotdealIndex';
 import PageHotdealDetail from 'pages/hotdeal/PageHotdealDetail';
 import PageHotdealFrom from 'pages/hotdeal/PageHotdealFrom';
+import SignupForm from 'components/accounts/SignupForm';
 
 function App() {
   const windowWidth = useWindowWidth();
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/blog/" />} />
           <Route path="/accounts/login/" element={<PageLogin />} />
+          <Route path="/accounts/signup/" element={<SignupForm />} />
           <Route path="/accounts/profile/" element={<PageProfile />} />
           {/* <Route path="/blog/" element={<PageBlog />} /> */}
           <Route path="/news/" element={<PageNewsIndex />} />

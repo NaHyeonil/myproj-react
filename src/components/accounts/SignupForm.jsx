@@ -5,16 +5,21 @@ import useFieldValues from 'hooks/useFieldValues';
 import { useNavigate } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 
-const INITIAL_FIELD_VALUES = { username: '', password: '' };
+const INITIAL_FIELD_VALUES = {
+  username: '',
+  email: '',
+  password: '',
+  password2: '',
+};
 
-function LoginForm() {
+function SignupForm() {
   const navigate = useNavigate();
 
-  const [auth, _, login] = useAuth();
+  const [auth, _, signup] = useAuth();
 
-  const [{ loading, error }, requestToken] = useApiAxios(
+  const [{ loading, error }, requestSignup] = useApiAxios(
     {
-      url: '/accounts/api/token/',
+      url: '/accounts/api/signup/',
       method: 'POST',
     },
     { manual: true },
@@ -25,35 +30,35 @@ function LoginForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    requestToken({ data: fieldValues }).then((response) => {
-      const { access, refresh, username, first_name, last_name } =
+    requestSignup({ data: fieldValues }).then((response) => {
+      const { access, refresh, email, username, first_name, last_name } =
         response.data;
-      // TODO: access/refresh token을 브라우저 어딘가에 저장해야 합니다.
-      // 저장해서 페이지 새로고침이 발생하더라도 그 token이 유실되지 않아야 합니다.
-      login({
+      signup({
         isLoggedIn: true,
         access,
         refresh,
         username,
+        email,
         first_name,
         last_name,
       });
       console.log('access :', access);
       console.log('refresh :', refresh);
       console.log('username :', username);
+      console.log('email :', email);
       console.log('first_name :', first_name);
       console.log('last_name :', last_name);
 
       // 인증 후, 이동할 주소를 지정합니다.
-      navigate('/');
+      navigate('/accounts/login/');
     });
   };
 
   return (
     <div>
-      <h2>로그인</h2>
+      <h2>Signup</h2>
       {error?.response?.status === 401 && (
-        <div className="text-red-400">로그인에 실패했습니다.</div>
+        <div className="text-red-400">회원가입에 실패했습니다.</div>
       )}
 
       <form onSubmit={handleSubmit}>
@@ -69,6 +74,16 @@ function LoginForm() {
         </div>
         <div className="my-3">
           <input
+            type="email"
+            name="email"
+            value={fieldValues.email}
+            onChange={handleFieldChange}
+            placeholder="email"
+            className="p-1 bg-gray-100 w-full outline-none focus:border focus:border-gray-400 focus:border-dashed hover:transition-transform duration-300"
+          />
+        </div>
+        <div className="my-3">
+          <input
             type="password"
             name="password"
             value={fieldValues.password}
@@ -78,7 +93,17 @@ function LoginForm() {
           />
         </div>
         <div className="my-3">
-          <Button>로그인</Button>
+          <input
+            type="password"
+            name="password2"
+            value={fieldValues.password2}
+            onChange={handleFieldChange}
+            placeholder="confirm password"
+            className="p-1 bg-gray-100 w-full outline-none focus:border focus:border-gray-400 focus:border-dashed hover:transition-transform duration-300"
+          />
+        </div>
+        <div className="my-3">
+          <Button>Signup</Button>
         </div>
       </form>
       <DebugStates auth={auth} fieldValues={fieldValues} />
@@ -86,4 +111,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
