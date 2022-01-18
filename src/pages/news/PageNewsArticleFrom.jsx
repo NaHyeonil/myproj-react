@@ -1,7 +1,7 @@
-import ArticleForm from 'components/news/ArticleForm';
 import { useNavigate, useParams } from 'react-router-dom';
+import ArticleForm from 'components/news/ArticleForm';
 
-function PageNewsArticleFrom() {
+function PageNewsArticleForm() {
   const navigate = useNavigate();
 
   const { articleId } = useParams();
@@ -9,9 +9,9 @@ function PageNewsArticleFrom() {
   return (
     <ArticleForm
       articleId={articleId}
-      handledDidSave={(savedPost) => navigate(`/news/${savedPost.id}/`)}
+      handleDidSave={(savedPost) => navigate(`/news/${savedPost.id}/`)}
     />
   );
 }
 
-export default PageNewsArticleFrom;
+export default PageNewsArticleForm;
